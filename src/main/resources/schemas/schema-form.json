@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "id": "urn:jsonschema:io:gravitee:policy:interrupt:configuration:InterruptPolicyConfiguration",
+  "properties": {
+    "scope": {
+      "title": "Scope",
+      "description": "Execute policy on <strong>request</strong> (HEAD) phase, <strong>request_content</strong> (includes payload) phase.",
+      "type": "string",
+      "default": "REQUEST",
+      "enum": [
+        "REQUEST",
+        "REQUEST_CONTENT"
+      ],
+      "deprecated": true
+    },
+    "errorKey": {
+      "title": "Error Key",
+      "description": "The error key corresponds to the key which will be mapped to a Response Template.",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "description": "Default response payload. This one can be extended by defining a Response Template.",
+      "type": "string"
+    },
+    "variables": {
+      "type": "array",
+      "title": "Variables",
+      "description": "Variables which can be used when defining a Response Template to override the payload containing some crucial information.",
+      "items": {
+        "type": "object",
+        "id": "urn:jsonschema:io:gravitee:policy:interrupt:configuration:Variable",
+        "title": "Variable",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value (support EL)",
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ]
+    }
+  },
+  "required": [
+    "errorKey",
+    "message"
+  ]
+}

@@ -7,7 +7,7 @@ gravitee-**/target/
 .*.settings.xml
 gravitee.*.log.*/*.log
 **/.logs
-
+target/
 # eclipse
 .settings/
 .project
