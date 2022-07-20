@@ -4,12 +4,14 @@
   "properties": {
     "scope": {
       "title": "Scope",
-      "description": "Execute policy on <strong>request</strong> (HEAD) phase, <strong>request_content</strong> (includes payload) phase.",
+      "description": "Execute policy on <strong>request</strong> (HEAD) phase, <strong>request_content</strong> (includes payload), <strong>response</strong> (HEAD) phase, <strong>response_content</strong> (includes payload) phase.",
       "type": "string",
       "default": "REQUEST",
       "enum": [
         "REQUEST",
-        "REQUEST_CONTENT"
+        "REQUEST_CONTENT",
+        "RESPONSE",
+        "RESPONSE_CONTENT"
       ],
       "deprecated": true
     },

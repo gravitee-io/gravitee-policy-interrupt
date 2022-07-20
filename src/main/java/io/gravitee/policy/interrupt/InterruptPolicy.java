@@ -27,6 +27,8 @@ import io.gravitee.policy.api.PolicyChain;
 import io.gravitee.policy.api.PolicyResult;
 import io.gravitee.policy.api.annotations.OnRequest;
 import io.gravitee.policy.api.annotations.OnRequestContent;
+import io.gravitee.policy.api.annotations.OnResponse;
+import io.gravitee.policy.api.annotations.OnResponseContent;
 import io.gravitee.policy.interrupt.configuration.InterruptPolicyConfiguration;
 import io.gravitee.policy.interrupt.configuration.PolicyScope;
 import java.util.Collections;
@@ -57,6 +59,18 @@ public class InterruptPolicy {
     }
   }
 
+  @OnResponse
+  public void onResponse(ExecutionContext context, PolicyChain chain) {
+    if (
+      configuration.getScope() == null ||
+      configuration.getScope() == PolicyScope.RESPONSE
+    ) {
+      chain.failWith(buildPolicyResult(context));
+    } else {
+      chain.doNext(context.request(), context.response());
+    }
+  }
+
   @OnRequestContent
   public ReadWriteStream<?> onRequestContent(
     ExecutionContext context,
@@ -67,16 +81,35 @@ public class InterruptPolicy {
       return new BufferedReadWriteStream() {
         @Override
         public SimpleReadWriteStream<Buffer> write(Buffer content) {
-          super.write(content);
-
           return this;
         }
 
         @Override
         public void end() {
           chain.streamFailWith(buildPolicyResult(context));
+        }
+      };
+    }
 
-          super.end();
+    return null;
+  }
+
+  @OnResponseContent
+  public ReadWriteStream<?> onResponseContent(
+    ExecutionContext context,
+    Request request,
+    PolicyChain chain
+  ) {
+    if (configuration.getScope() == PolicyScope.RESPONSE_CONTENT) {
+      return new BufferedReadWriteStream() {
+        @Override
+        public SimpleReadWriteStream<Buffer> write(Buffer content) {
+          return this;
+        }
+
+        @Override
+        public void end() {
+          chain.streamFailWith(buildPolicyResult(context));
         }
       };
     }
