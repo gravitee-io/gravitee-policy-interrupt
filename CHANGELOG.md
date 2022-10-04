@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.0.0...1.1.0) (2022-10-04)
+
+
+### Features
+
+* Add support for on-response phase ([52f63cf](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/52f63cf224dbfe4fe74ed7971476e5acf6087e8e))
+
 # 1.0.0 (2022-06-23)
 
 
