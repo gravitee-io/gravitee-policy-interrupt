@@ -22,11 +22,7 @@ import io.gravitee.apim.gateway.tests.sdk.AbstractPolicyTest;
 import io.gravitee.apim.gateway.tests.sdk.annotations.DeployApi;
 import io.gravitee.apim.gateway.tests.sdk.annotations.GatewayTest;
 import io.gravitee.policy.interrupt.configuration.InterruptPolicyConfiguration;
-import io.reactivex.Single;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
 import io.reactivex.observers.TestObserver;
-import io.vertx.core.json.JsonObject;
 import io.vertx.reactivex.core.buffer.Buffer;
 import io.vertx.reactivex.ext.web.client.HttpResponse;
 import io.vertx.reactivex.ext.web.client.WebClient;
@@ -139,5 +135,107 @@ public class InterruptPolicyIntegrationTest
       .assertNoErrors();
 
     wiremock.verify(0, postRequestedFor(urlPathEqualTo("/endpoint")));
+  }
+
+  @Test
+  @DisplayName("Should do interrupt on-response")
+  @DeployApi("/apis/interrupt-onresponse.json")
+  void shouldDoInterruptOnResponse(WebClient client) {
+    final TestObserver<HttpResponse<Buffer>> obs = client
+      .get("/test")
+      .rxSend()
+      .test();
+
+    awaitTerminalEvent(obs);
+    obs
+      .assertComplete()
+      .assertValue(response -> {
+        assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
+        return true;
+      })
+      .assertNoErrors();
+
+    wiremock.verify(1, getRequestedFor(urlPathEqualTo("/endpoint")));
+  }
+
+  @Test
+  @DisplayName("Should do interrupt on-response with response template")
+  @DeployApi("/apis/interrupt-onresponse-responsetemplate.json")
+  void shouldDoInterruptOnResponseWithResponseTemplate(WebClient client) {
+    final TestObserver<HttpResponse<Buffer>> obs = client
+      .get("/test")
+      .putHeader("my-custom-header", "the anonymous consumer")
+      .rxSend()
+      .test();
+
+    awaitTerminalEvent(obs);
+    obs
+      .assertComplete()
+      .assertValue(response -> {
+        assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.bodyAsString())
+          .isEqualTo(
+            "An other message in a bottle... from the anonymous consumer"
+          );
+        return true;
+      })
+      .assertNoErrors();
+
+    wiremock.verify(1, getRequestedFor(urlPathEqualTo("/endpoint")));
+  }
+
+  @Test
+  @DisplayName("Should do interrupt on-response-content")
+  @DeployApi("/apis/interrupt-onresponsecontent.json")
+  void shouldDoInterruptOnResponseContent(WebClient client) {
+    wiremock.stubFor(post("/endpoint").willReturn(ok("response from backend")));
+
+    final TestObserver<HttpResponse<Buffer>> test = client
+      .post("/test")
+      .rxSend()
+      .test();
+
+    awaitTerminalEvent(test);
+    test
+      .assertComplete()
+      .assertValue(response -> {
+        assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
+        return true;
+      })
+      .assertNoErrors();
+
+    wiremock.verify(1, postRequestedFor(urlPathEqualTo("/endpoint")));
+  }
+
+  @Test
+  @DisplayName("Should do interrupt on-response-content with response template")
+  @DeployApi("/apis/interrupt-onresponsecontent-responsetemplate.json")
+  void shouldDoInterruptOnResponseContentWithResponseTemplate(
+    WebClient client
+  ) {
+    wiremock.stubFor(post("/endpoint").willReturn(ok("response from backend")));
+
+    final TestObserver<HttpResponse<Buffer>> obs = client
+      .post("/test")
+      .putHeader("my-custom-header", "the anonymous consumer")
+      .rxSendBuffer(Buffer.buffer("request payload"))
+      .test();
+
+    awaitTerminalEvent(obs);
+    obs
+      .assertComplete()
+      .assertValue(response -> {
+        assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.bodyAsString())
+          .isEqualTo(
+            "An other message in a bottle... from the anonymous consumer"
+          );
+        return true;
+      })
+      .assertNoErrors();
+
+    wiremock.verify(1, postRequestedFor(urlPathEqualTo("/endpoint")));
   }
 }

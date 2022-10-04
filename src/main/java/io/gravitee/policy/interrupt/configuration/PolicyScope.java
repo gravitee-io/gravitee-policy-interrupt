@@ -22,4 +22,7 @@ package io.gravitee.policy.interrupt.configuration;
 public enum PolicyScope {
   REQUEST,
   REQUEST_CONTENT,
+
+  RESPONSE,
+  RESPONSE_CONTENT,
 }
