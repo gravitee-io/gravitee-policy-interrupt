@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  * @author GraviteeSource Team
  */
 @GatewayTest
-public class InterruptPolicyIntegrationTest
+class InterruptPolicyIntegrationTest
   extends AbstractPolicyTest<InterruptPolicy, InterruptPolicyConfiguration> {
 
   @Test
@@ -51,6 +51,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.statusMessage()).isEqualTo("Internal Server Error");
         assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
         return true;
       })
@@ -74,6 +75,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.statusMessage()).isEqualTo("Bad Request");
         assertThat(response.bodyAsString())
           .isEqualTo(
             "An other message in a bottle... from the anonymous consumer"
@@ -101,6 +103,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.statusMessage()).isEqualTo("Internal Server Error");
         assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
         return true;
       })
@@ -126,6 +129,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.statusMessage()).isEqualTo("Bad Request");
         assertThat(response.bodyAsString())
           .isEqualTo(
             "An other message in a bottle... from the anonymous consumer"
@@ -151,6 +155,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.statusMessage()).isEqualTo("Internal Server Error");
         assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
         return true;
       })
@@ -174,6 +179,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.statusMessage()).isEqualTo("Bad Request");
         assertThat(response.bodyAsString())
           .isEqualTo(
             "An other message in a bottle... from the anonymous consumer"
@@ -201,6 +207,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(500);
+        assertThat(response.statusMessage()).isEqualTo("Internal Server Error");
         assertThat(response.bodyAsString()).isEqualTo("Message in a bottle...");
         return true;
       })
@@ -228,6 +235,7 @@ public class InterruptPolicyIntegrationTest
       .assertComplete()
       .assertValue(response -> {
         assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.statusMessage()).isEqualTo("Bad Request");
         assertThat(response.bodyAsString())
           .isEqualTo(
             "An other message in a bottle... from the anonymous consumer"
