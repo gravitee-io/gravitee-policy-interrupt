@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.1.0...1.1.1) (2023-07-20)
+
+
+### Bug Fixes
+
+* update policy description ([739dae4](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/739dae48f0df7fdd5b9efc8fbe37a217824e6c0e))
+
 # [1.1.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.0.0...1.1.0) (2022-10-04)
 
 
