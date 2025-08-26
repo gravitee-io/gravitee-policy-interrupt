@@ -40,7 +40,10 @@
           },
           "value": {
             "title": "Value (support EL)",
-            "type": "string"
+            "type": "string",
+            "gioConfig": {
+                "el": true
+            }
           }
         }
       },
