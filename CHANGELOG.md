@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.1.1...1.2.0) (2025-11-07)
+
+
+### Features
+
+* update form to provide el metadata ([f5b17f3](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/f5b17f3846134deb7dd03d8be620138c9cab05ef))
+
 ## [1.1.1](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.1.0...1.1.1) (2023-07-20)
 
 
