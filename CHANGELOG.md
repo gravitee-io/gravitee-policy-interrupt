@@ -1,3 +1,20 @@
+# [2.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.2.0...2.0.0-alpha.1) (2025-11-12)
+
+
+### chore
+
+* update circleci/config.yml & pom.xml ([982bc56](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/982bc56fbe4230bfc60609a80d143d1bbb67a38a))
+
+
+### Features
+
+* enable for LLM & MCP Proxy API ([ad0e07a](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/ad0e07a8b0435e4a676fd754b9deab811bc0b5a0))
+
+
+### BREAKING CHANGES
+
+* requires APIM 4.6+
+
 # [1.2.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.1.1...1.2.0) (2025-11-07)
 
 
