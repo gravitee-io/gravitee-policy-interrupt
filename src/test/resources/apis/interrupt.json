@@ -18,9 +18,7 @@
   "flows": [
     {
       "name": "flow-1",
-      "methods": [
-        "GET"
-      ],
+      "methods": ["GET"],
       "enabled": true,
       "path-operator": {
         "path": "/",
@@ -35,13 +33,15 @@
           "configuration": {
             "message": "Message in a bottle...",
             "variables": [
-              {"name":  "my-host-header", "value":  "{#request.headers['host']}"}
+              {
+                "name": "my-host-header",
+                "value": "{#request.headers['host']}"
+              }
             ]
           }
         }
       ],
-      "post": [
-      ]
+      "post": []
     }
   ]
 }

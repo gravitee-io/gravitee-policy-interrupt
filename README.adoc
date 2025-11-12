@@ -42,7 +42,8 @@ define a Response Template.
 |===
 |Plugin version | APIM version
 
-|1.x and upper                  | 3.10.x to latest
+|1.x                  | 3.10.x to 4.5.x
+|2.x                  | 4.6.x to latest
 |===
 
 == Configuration
