@@ -35,13 +35,15 @@
             "errorKey": "INTERRUPT_MdE",
             "message": "Message in a bottle...",
             "variables": [
-              {"name":  "my-host-header", "value":  "{#request.headers['host']}"}
+              {
+                "name": "my-host-header",
+                "value": "{#request.headers['host']}"
+              }
             ]
           }
         }
       ],
-      "post": [
-      ]
+      "post": []
     }
   ]
 }

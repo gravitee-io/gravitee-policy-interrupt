@@ -18,9 +18,7 @@
   "flows": [
     {
       "name": "flow-1",
-      "methods": [
-        "POST"
-      ],
+      "methods": ["POST"],
       "enabled": true,
       "path-operator": {
         "path": "/",
@@ -37,14 +35,19 @@
             "errorKey": "INTERRUPT_ME",
             "message": "Message in a bottle...",
             "variables": [
-              {"name":  "my-message", "value":  "An other message in a bottle..."},
-              {"name":  "my-custom-header", "value":  "{#request.headers['my-custom-header']}"}
+              {
+                "name": "my-message",
+                "value": "An other message in a bottle..."
+              },
+              {
+                "name": "my-custom-header",
+                "value": "{#request.headers['my-custom-header']}"
+              }
             ]
           }
         }
       ],
-      "post": [
-      ]
+      "post": []
     }
   ],
   "response_templates": {
