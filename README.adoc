@@ -37,13 +37,13 @@ If you want to override this standard response from the policy, you can define a
 define a Response Template.
 
 
-== Compatibility with APIM
+== Compatibility matrix
 
 |===
-|Plugin version | APIM version
+|Plugin version | APIM version | AM Version
 
-|1.x                  | 3.10.x to 4.5.x
-|2.x                  | 4.6.x to latest
+|1.x                  | 3.10.x to 4.5.x | 3.10.x to 4.10.x
+|2.x                  | 4.6.x to latest | 4.6.x to latest
 |===
 
 == Configuration
