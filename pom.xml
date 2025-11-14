@@ -34,7 +34,13 @@
     <description>Break the entire request processing in case of a condition</description>
 
     <properties>
-        <gravitee-apim.version>4.6.0</gravitee-apim.version>
+        <gravitee-apim-gateway-tests-sdk.version>4.6.0</gravitee-apim-gateway-tests-sdk.version>
+
+        <gravitee-bom.version>8.2.0</gravitee-bom.version>
+        <gravitee-gateway-api.version>3.9.1</gravitee-gateway-api.version>
+        <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
+        <gravitee-expression-language.version>4.0.0</gravitee-expression-language.version>
+
         <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
 
         <!-- Property used by the publication job in CI-->
@@ -45,9 +51,9 @@
         <dependencies>
             <!-- Import bom to properly inherit all dependencies -->
             <dependency>
-                <groupId>io.gravitee.apim</groupId>
-                <artifactId>gravitee-apim-bom</artifactId>
-                <version>${gravitee-apim.version}</version>
+                <groupId>io.gravitee</groupId>
+                <artifactId>gravitee-bom</artifactId>
+                <version>${gravitee-bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -59,18 +65,21 @@
         <dependency>
             <groupId>io.gravitee.gateway</groupId>
             <artifactId>gravitee-gateway-api</artifactId>
+            <version>${gravitee-gateway-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.gravitee.policy</groupId>
             <artifactId>gravitee-policy-api</artifactId>
+            <version>${gravitee-policy-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.gravitee.el</groupId>
             <artifactId>gravitee-expression-language</artifactId>
+            <version>${gravitee-expression-language.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -97,7 +106,7 @@
         <dependency>
             <groupId>io.gravitee.apim.gateway</groupId>
             <artifactId>gravitee-apim-gateway-tests-sdk</artifactId>
-            <version>${gravitee-apim.version}</version>
+            <version>${gravitee-apim-gateway-tests-sdk.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
