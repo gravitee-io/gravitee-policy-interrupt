@@ -1,3 +1,10 @@
+# [2.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2025-11-14)
+
+
+### Bug Fixes
+
+* **deps:** adapt dependencies for AM ([a25f9f6](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/a25f9f6e8ae448b0a13d88b1ed0b6fbbdaf3c675))
+
 # [2.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.2.0...2.0.0-alpha.1) (2025-11-12)
 
 
