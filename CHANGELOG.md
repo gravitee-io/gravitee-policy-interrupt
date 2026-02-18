@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.0.0...2.1.0) (2026-02-18)
+
+
+### Features
+
+* enable for A2A proxy ([d29a33f](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/d29a33f6fb97bb2564ff073dd064b19acb8fe9b9))
+
 # [2.0.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/1.2.0...2.0.0) (2025-12-11)
 
 
