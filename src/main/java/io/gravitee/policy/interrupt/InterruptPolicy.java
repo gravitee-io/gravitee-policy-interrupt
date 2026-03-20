@@ -147,6 +147,7 @@ public class InterruptPolicy {
 
     return PolicyResult.failure(
       configuration.getErrorKey(),
+      configuration.getStatusCode(),
       configuration.getMessage(),
       variables
     );

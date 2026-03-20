@@ -51,6 +51,12 @@ define a Response Template.
 |===
 |Property |Required |Description |Type |Default
 
+.^|statusCode
+^.^|-
+|The HTTP status code of the interruption response
+^.^|integer
+^.^|500
+
 .^|errorKey
 ^.^|X
 |The error Key to use for defining a Response Template
@@ -76,6 +82,7 @@ define a Response Template.
 [source, json]
 ----
 "policy-interrupt": {
+    "statusCode": 503,
     "errorKey": "MY_CUSTOM_KEY",
     "message": "You got a problem, sir !",
     "variables": [{

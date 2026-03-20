@@ -10,6 +10,14 @@
       "enum": ["REQUEST", "REQUEST_CONTENT", "RESPONSE", "RESPONSE_CONTENT"],
       "deprecated": true
     },
+    "statusCode": {
+      "title": "Status Code",
+      "description": "The HTTP status code of the interruption response.",
+      "type": "integer",
+      "default": 500,
+      "minimum": 300,
+      "exclusiveMaximum": 600
+    },
     "errorKey": {
       "title": "Error Key",
       "description": "The error key corresponds to the key which will be mapped to a Response Template.",

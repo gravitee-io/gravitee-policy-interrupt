@@ -65,6 +65,34 @@ class InterruptPolicyIntegrationTest
 
   @SneakyThrows
   @Test
+  @DisplayName("Should do interrupt on-request with custom status code")
+  @DeployApi("/apis/interrupt-customstatuscode.json")
+  void shouldDoInterruptOnRequestWithCustomStatusCode(HttpClient client) {
+    final var obs = client
+      .rxRequest(HttpMethod.GET, "/test")
+      .flatMap(request -> request.rxSend())
+      .flatMap(response -> {
+        assertThat(response.statusCode()).isEqualTo(503);
+        assertThat(response.statusMessage()).isEqualTo("Service Unavailable");
+        return response.rxBody();
+      })
+      .toFlowable()
+      .test();
+
+    obs.await(30000, TimeUnit.MILLISECONDS);
+    obs
+      .assertComplete()
+      .assertValue(buffer -> {
+        assertThat(buffer.toString()).isEqualTo("Service unavailable...");
+        return true;
+      })
+      .assertNoErrors();
+
+    wiremock.verify(0, getRequestedFor(urlPathEqualTo("/endpoint")));
+  }
+
+  @SneakyThrows
+  @Test
   @DisplayName("Should do interrupt on-request with response template")
   @DeployApi("/apis/interrupt-responsetemplate.json")
   void shouldDoInterruptOnRequestWithResponseTemplate(HttpClient client) {

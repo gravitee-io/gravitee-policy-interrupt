@@ -31,6 +31,8 @@ public class InterruptPolicyConfiguration implements PolicyConfiguration {
 
   private String message;
 
+  private int statusCode = 500;
+
   private List<Variable> variables = new ArrayList<>();
 
   public PolicyScope getScope() {
@@ -55,6 +57,14 @@ public class InterruptPolicyConfiguration implements PolicyConfiguration {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public int getStatusCode() {
+    return statusCode;
+  }
+
+  public void setStatusCode(int statusCode) {
+    this.statusCode = statusCode;
   }
 
   public List<Variable> getVariables() {
