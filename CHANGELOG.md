@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.1.0...2.2.0) (2026-03-27)
+
+
+### Features
+
+* add configurable statusCode parameter to interrupt policy ([c072cab](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/c072caba868a97b117dbfd2a3f9818e96261756f))
+
 # [2.1.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.0.0...2.1.0) (2026-02-18)
 
 
