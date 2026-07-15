@@ -19,7 +19,6 @@ import io.gravitee.common.util.Maps;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.http.stream.TransformableRequestStreamBuilder;
 import io.gravitee.gateway.api.stream.BufferedReadWriteStream;
 import io.gravitee.gateway.api.stream.ReadWriteStream;
 import io.gravitee.gateway.api.stream.SimpleReadWriteStream;
@@ -33,7 +32,6 @@ import io.gravitee.policy.interrupt.configuration.InterruptPolicyConfiguration;
 import io.gravitee.policy.interrupt.configuration.PolicyScope;
 import java.util.Collections;
 import java.util.Map;
-import java.util.function.Function;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -49,25 +47,19 @@ public class InterruptPolicy {
 
   @OnRequest
   public void onRequest(ExecutionContext context, PolicyChain chain) {
-    if (
-      configuration.getScope() == null ||
-      configuration.getScope() == PolicyScope.REQUEST
-    ) {
-      chain.failWith(buildPolicyResult(context));
-    } else {
+    if (configuration.getScope() == PolicyScope.REQUEST_CONTENT) {
       chain.doNext(context.request(), context.response());
+    } else {
+      chain.failWith(buildPolicyResult(context));
     }
   }
 
   @OnResponse
   public void onResponse(ExecutionContext context, PolicyChain chain) {
-    if (
-      configuration.getScope() == null ||
-      configuration.getScope() == PolicyScope.RESPONSE
-    ) {
-      chain.failWith(buildPolicyResult(context));
-    } else {
+    if (configuration.getScope() == PolicyScope.RESPONSE_CONTENT) {
       chain.doNext(context.request(), context.response());
+    } else {
+      chain.failWith(buildPolicyResult(context));
     }
   }
 

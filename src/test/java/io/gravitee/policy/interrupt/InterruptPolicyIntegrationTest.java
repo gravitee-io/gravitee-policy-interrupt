@@ -219,6 +219,66 @@ class InterruptPolicyIntegrationTest
 
   @SneakyThrows
   @Test
+  @DisplayName(
+    "Should interrupt on response when deprecated scope is request-side (REQUEST)"
+  )
+  @DeployApi("/apis/interrupt-onresponse-with-request-scope.json")
+  void shouldDoInterruptOnResponseWhenScopeIsRequest(
+    HttpClient client,
+    VertxTestContext ctx
+  ) {
+    client
+      .rxRequest(HttpMethod.GET, "/test")
+      .flatMap(HttpClientRequest::rxSend)
+      .flatMapPublisher(InterruptPolicyIntegrationTest::buildResult)
+      .subscribe(
+        asserts(
+          ctx,
+          (softly, result) -> {
+            softly.assertThat(result.statusCode()).isEqualTo(500);
+            softly
+              .assertThat(result.body())
+              .hasToString("Interrupted on response despite REQUEST scope");
+          },
+          () -> wiremock.verify(1, getRequestedFor(urlPathEqualTo("/endpoint")))
+        ),
+        ctx::failNow
+      );
+  }
+
+  @SneakyThrows
+  @Test
+  @DisplayName(
+    "Should interrupt on response when deprecated scope is request-side (REQUEST_CONTENT)"
+  )
+  @DeployApi("/apis/interrupt-onresponse-with-request-content-scope.json")
+  void shouldDoInterruptOnResponseWhenScopeIsRequestContent(
+    HttpClient client,
+    VertxTestContext ctx
+  ) {
+    client
+      .rxRequest(HttpMethod.GET, "/test")
+      .flatMap(HttpClientRequest::rxSend)
+      .flatMapPublisher(InterruptPolicyIntegrationTest::buildResult)
+      .subscribe(
+        asserts(
+          ctx,
+          (softly, result) -> {
+            softly.assertThat(result.statusCode()).isEqualTo(500);
+            softly
+              .assertThat(result.body())
+              .hasToString(
+                "Interrupted on response despite REQUEST_CONTENT scope"
+              );
+          },
+          () -> wiremock.verify(1, getRequestedFor(urlPathEqualTo("/endpoint")))
+        ),
+        ctx::failNow
+      );
+  }
+
+  @SneakyThrows
+  @Test
   @DisplayName("Should do interrupt on-response with response template")
   @DeployApi("/apis/interrupt-onresponse-responsetemplate.json")
   void shouldDoInterruptOnResponseWithResponseTemplate(
