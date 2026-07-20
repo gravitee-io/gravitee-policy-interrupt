@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.2.0...2.2.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* interrupt on response when deprecated scope is REQUEST ([a241dfe](https://github.com/gravitee-io/gravitee-policy-interrupt/commit/a241dfe02dedeff2ee9c9e01e5dfafea5eb8ce62))
+
 # [2.2.0](https://github.com/gravitee-io/gravitee-policy-interrupt/compare/2.1.0...2.2.0) (2026-03-27)
 
 
