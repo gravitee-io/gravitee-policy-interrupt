@@ -40,10 +40,10 @@ define a Response Template.
 == Compatibility matrix
 
 |===
-|Plugin version | APIM version | AM Version
+| Plugin version | APIM version    | AM Version       | Java version
 
-|1.x                  | 3.10.x to 4.5.x | 3.10.x to 4.10.x
-|2.x                  | 4.6.x to latest | 4.6.x to latest
+| 2.x            | 4.6.x to latest | 4.6.x to latest  | 17
+| 1.x            | 3.10.x to 4.5.x | 3.10.x to 4.10.x | 11
 |===
 
 == Configuration
